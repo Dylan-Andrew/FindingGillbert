@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FishingManager : MonoBehaviour
@@ -80,6 +78,13 @@ public class FishingManager : MonoBehaviour
     {
         hookedFish = fish;
         isHookMoving = true;
+
+        Fish fishComponent = hookedFish.GetComponent<Fish>();
+        if (fishComponent != null && fishComponent.fishData != null)
+        {
+            Debug.Log($"Caught: {fishComponent.fishData.fishName}");
+        }
+
         Destroy(hookedFish, 5f);
     }
 
@@ -101,5 +106,4 @@ public class FishingManager : MonoBehaviour
         hookedFish = null;
         hook.transform.position = hookStartPosition;
     }
-
 }
