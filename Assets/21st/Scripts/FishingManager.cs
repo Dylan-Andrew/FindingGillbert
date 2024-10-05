@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class FishingManager : MonoBehaviour
 {
-    [SerializeField] private GameObject fishingRod;
-    [SerializeField] private GameObject hook;
-    [SerializeField] private LayerMask fishLayer;
-    [SerializeField] private float hookSpeed = 5f;
+    [SerializeField]
+    private GameObject fishingRod;
+    [SerializeField]
+    private GameObject hook;
+    [SerializeField]
+    private LayerMask fishLayer;
+    [SerializeField]
+    private float hookSpeed = 5f;
 
     private Vector3 hookStartPosition;
     private Vector3 targetPosition;
