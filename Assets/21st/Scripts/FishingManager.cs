@@ -76,6 +76,13 @@ public class FishingManager : MonoBehaviour
         CheckForFishCollision();
     }
 
+    private void HookFish(GameObject fish)
+    {
+        hookedFish = fish;
+        isHookMoving = true;
+        Destroy(hookedFish, 5f);
+    }
+
     void CheckForFishCollision()
     {
         Collider[] fishColliders = Physics.OverlapSphere(hook.transform.position, 0.5f, fishLayer);
@@ -83,6 +90,7 @@ public class FishingManager : MonoBehaviour
         if (fishColliders.Length > 0 && hookedFish == null)
         {
             hookedFish = fishColliders[0].gameObject;
+            HookFish(hookedFish);
             Debug.Log("Fish Caught!");
         }
     }
