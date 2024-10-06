@@ -129,7 +129,7 @@ public class FishingManager : MonoBehaviour
         if (fishComponent != null && fishComponent.fishData != null)
         {
             gameManager.DisplayFishCaught(fishComponent.fishData.fishName);
-            if (fishComponent.fishData.fishName == "Gillbert")
+            if (fishComponent.fishData.fishName == "Gilbert")
             {
                 gameManager.Win();
             }

@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a7a8cd5d30c1254d8fea0ac652bfafd, type: 3}
-  m_Name: Gillbert
+  m_Name: Gilbert
   m_EditorClassIdentifier: 
-  fishName: Gillbert
+  fishName: Gilbert
