@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     public void DecreaseHookCount()
     {
         remainingHooks--;
-        UpdateRemainingHooksText(); // Update the remaining hooks text
+        UpdateRemainingHooksText();
 
         if (remainingHooks <= 0)
         {
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateRemainingHooksText()
     {
-        remainingHooksText.text = $"Remaining Hooks: {remainingHooks}"; // Update UI text
+        remainingHooksText.text = $"Remaining Hooks: {remainingHooks}";
     }
 
     private void GameOver()
