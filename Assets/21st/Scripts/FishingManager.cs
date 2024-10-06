@@ -83,6 +83,12 @@ public class FishingManager : MonoBehaviour
         hookedFish = fish;
         isHookMoving = true;
 
+        RandomMovementBezier randomMovement = hookedFish.GetComponent<RandomMovementBezier>();
+        if (randomMovement != null)
+        {
+            randomMovement.enabled = false;
+        }
+
         Fish fishComponent = hookedFish.GetComponent<Fish>();
         if (fishComponent != null && fishComponent.fishData != null)
         {
