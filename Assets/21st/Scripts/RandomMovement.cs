@@ -10,7 +10,7 @@ enum MovementState
 }
 
 
-public class RandomMovementBezier : MonoBehaviour
+public class RandomMovement : MonoBehaviour
 {
     [SerializeField]
     private Vector3 areaMin = new Vector3(-5, 0, -5);

@@ -1,20 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 public class FishingManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject fishingRod;
-    [SerializeField]
-    private GameObject hook;
-    [SerializeField]
-    private LayerMask fishLayer;
-    [SerializeField]
-    private float hookSpeed = 5f;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameObject fishingRod;
+    [SerializeField] private GameObject hook;
+    [SerializeField] private LayerMask fishLayer;
+    [SerializeField] private float hookSpeed = 5f;
 
     private Vector3 hookStartPosition;
     private Vector3 targetPosition;
     private bool isHookMoving = false;
     private GameObject hookedFish = null;
+    private bool canCastHook = true; // Flag to track if the hook can be cast
 
     void Start()
     {
@@ -35,7 +34,8 @@ public class FishingManager : MonoBehaviour
 
         CheckForFishCollision();
 
-        if (Input.GetMouseButtonDown(0) && !isHookMoving)
+        // Check if the hook can be cast and the player clicks
+        if (Input.GetMouseButtonDown(0) && !isHookMoving && canCastHook)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -44,6 +44,7 @@ public class FishingManager : MonoBehaviour
             {
                 targetPosition = hit.point;
                 isHookMoving = true;
+                StartCoroutine(HookFishingProcess()); // Start the hooking process
             }
         }
 
@@ -53,8 +54,25 @@ public class FishingManager : MonoBehaviour
         }
     }
 
-    void MoveHook()
+    private IEnumerator HookFishingProcess()
     {
+        yield return new WaitUntil(() => hook.transform.position == targetPosition); // Wait until the hook reaches the target
+
+        // Check if a fish was caught
+        if (hookedFish == null)
+        {
+            // Decrease hook count if no fish was caught
+            gameManager.DecreaseHookCount();
+        }
+        else
+        {
+            HandleCaughtFish(); // Handle the case of catching fish
+        }
+    }
+
+    private void MoveHook()
+    {
+        if (gameManager.IsGameOver()) return;
         hook.transform.position = Vector3.MoveTowards(hook.transform.position, targetPosition, hookSpeed * Time.deltaTime);
 
         if (hook.transform.position == targetPosition)
@@ -78,12 +96,15 @@ public class FishingManager : MonoBehaviour
         CheckForFishCollision();
     }
 
-    private void HookFish(GameObject fish)
+    private void HandleCaughtFish()
     {
-        hookedFish = fish;
-        isHookMoving = true;
+        // Prevent casting while fish is caught
+        canCastHook = false;
 
-        RandomMovementBezier randomMovement = hookedFish.GetComponent<RandomMovementBezier>();
+        // Decrease the hook count since a fish is caught
+        gameManager.DecreaseHookCount();
+
+        RandomMovement randomMovement = hookedFish.GetComponent<RandomMovement>();
         if (randomMovement != null)
         {
             randomMovement.enabled = false;
@@ -93,24 +114,35 @@ public class FishingManager : MonoBehaviour
         if (fishComponent != null && fishComponent.fishData != null)
         {
             Debug.Log($"Caught: {fishComponent.fishData.fishName}");
+            gameManager.DisplayFishCaught(fishComponent.fishData.fishName);
+            if (fishComponent.fishData.fishName == "Gillbert")
+            {
+                gameManager.Win();
+            }
         }
 
+        // Destroy the fish after a delay
         Destroy(hookedFish, 5f);
+        Invoke(nameof(ResetCatch), 5f); // Reset the ability to cast after the fish is destroyed
     }
 
-    void CheckForFishCollision()
+    private void ResetCatch()
+    {
+        canCastHook = true; // Allow casting again after the fish is destroyed
+    }
+
+    private void CheckForFishCollision()
     {
         Collider[] fishColliders = Physics.OverlapSphere(hook.transform.position, 0.5f, fishLayer);
 
         if (fishColliders.Length > 0 && hookedFish == null)
         {
             hookedFish = fishColliders[0].gameObject;
-            HookFish(hookedFish);
             Debug.Log("Fish Caught!");
         }
     }
 
-    void ResetHook()
+    private void ResetHook()
     {
         isHookMoving = false;
         hookedFish = null;
