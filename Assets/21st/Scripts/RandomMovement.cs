@@ -2,17 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum MovementState
+{
+    Moving,
+    Stopping,
+    Rotating
+}
+
+
 public class RandomMovementBezier : MonoBehaviour
 {
     [SerializeField]
     private Vector2 areaSize = new Vector2(5, 5);
     [SerializeField]
-    private float minSpeed = 0.2f;
+    private float minSpeed = 1.0f;
     [SerializeField]
-    private float maxSpeed = 1.0f;
+    private float maxSpeed = 5.0f;
+    [SerializeField]
+    private float rotationSpeed = 5.0f;
     private float speed;
     private Vector3 startPoint, controlPoint, targetPosition;
     private float t = 0f;
+    MovementState currentState = MovementState.Moving;
+    float stopDuration = 0.01f;
+    float stopTimer = 0f;
 
     void Start()
     {
@@ -22,7 +35,18 @@ public class RandomMovementBezier : MonoBehaviour
 
     void Update()
     {
-        MoveAlongBezierCurve();
+        switch (currentState)
+        {
+            case MovementState.Moving:
+                MoveAlongBezierCurve();
+                break;
+            case MovementState.Stopping:
+                StopAndRotate();
+                break;
+            case MovementState.Rotating:
+                RotateTowardsTarget();
+                break;
+        }
     }
 
     void SetNewBezierCurve()
@@ -37,6 +61,32 @@ public class RandomMovementBezier : MonoBehaviour
         controlPoint += new Vector3(Random.Range(-3, 3), 0, Random.Range(-3, 3));
 
         t = 0f;
+        currentState = MovementState.Stopping;
+        stopTimer = 0f;
+    }
+
+    void StopAndRotate()
+    {
+        stopTimer += Time.deltaTime;
+        if (stopTimer >= stopDuration)
+        {
+            currentState = MovementState.Rotating;
+        }
+    }
+
+    void RotateTowardsTarget()
+    {
+        Vector3 direction = targetPosition - transform.position;
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+
+            if (Quaternion.Angle(transform.rotation, targetRotation) < 1f)
+            {
+                currentState = MovementState.Moving;
+            }
+        }
     }
 
     void MoveAlongBezierCurve()
@@ -48,6 +98,13 @@ public class RandomMovementBezier : MonoBehaviour
             Vector3 bezierPoint = Mathf.Pow(1 - t, 2) * startPoint +
                                   2 * (1 - t) * t * controlPoint +
                                   Mathf.Pow(t, 2) * targetPosition;
+
+            Vector3 direction = bezierPoint - transform.position;
+            if (direction != Vector3.zero)
+            {
+                Quaternion rotation = Quaternion.LookRotation(direction);
+                transform.rotation = rotation;
+            }
 
             transform.position = bezierPoint;
         }
