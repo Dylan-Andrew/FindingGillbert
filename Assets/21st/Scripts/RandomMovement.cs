@@ -13,7 +13,9 @@ enum MovementState
 public class RandomMovementBezier : MonoBehaviour
 {
     [SerializeField]
-    private Vector2 areaSize = new Vector2(5, 5);
+    private Vector3 areaMin = new Vector3(-5, 0, -5);
+    [SerializeField]
+    private Vector3 areaMax = new Vector3(5, 0, 5);
     [SerializeField]
     private float minSpeed = 1.0f;
     [SerializeField]
@@ -53,8 +55,8 @@ public class RandomMovementBezier : MonoBehaviour
     {
         startPoint = transform.position;
 
-        float randomX = Random.Range(-areaSize.x / 2, areaSize.x / 2);
-        float randomZ = Random.Range(-areaSize.y / 2, areaSize.y / 2);
+        float randomX = Random.Range(areaMin.x, areaMax.x);
+        float randomZ = Random.Range(areaMin.z, areaMax.z);
         targetPosition = new Vector3(randomX, transform.position.y, randomZ);
 
         controlPoint = (startPoint + targetPosition) / 2;
@@ -113,5 +115,13 @@ public class RandomMovementBezier : MonoBehaviour
             SetNewBezierCurve();
             speed = Random.Range(minSpeed, maxSpeed);
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Vector3 center = (areaMin + areaMax) / 2;
+        Vector3 size = areaMax - areaMin;
+        Gizmos.DrawWireCube(center, size);
     }
 }
