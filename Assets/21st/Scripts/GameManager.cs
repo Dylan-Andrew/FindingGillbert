@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI fishCaughtText;
     [SerializeField] private TextMeshProUGUI gameOverText;
-    [SerializeField] private TextMeshProUGUI remainingHooksText; // New field for displaying remaining hooks
+    [SerializeField] private TextMeshProUGUI remainingHooksText;
     [SerializeField] private float displayDuration = 3f;
     [SerializeField] private int maxHooks = 5;
 
@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
     {
         remainingHooks = maxHooks;
         gameOverText.text = "";
-        UpdateRemainingHooksText(); // Update the UI at the start
+        fishCaughtText.text = "";
+        UpdateRemainingHooksText();
     }
 
     public void DisplayFishCaught(string fishName)
