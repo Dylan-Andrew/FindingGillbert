@@ -3,19 +3,23 @@ using UnityEngine;
 
 public class FishingManager : MonoBehaviour
 {
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private GameObject fishingRod;
-    [SerializeField] private GameObject hook;
-    [SerializeField] private LayerMask fishLayer;
-    [SerializeField] private float hookSpeed = 5f;
+    [SerializeField]
+    private GameManager gameManager;
+    [SerializeField]
+    private GameObject topGun;
+    [SerializeField]
+    private GameObject hook;
+    [SerializeField]
+    private LayerMask fishLayer;
+    [SerializeField]
+    private float hookSpeed = 5f;
 
-    private Vector3 hookStartPosition;
     private Vector3 targetPosition;
     private bool isHookMoving = false;
     private GameObject hookedFish = null;
     private bool canCastHook = true;
     private Quaternion originalHookRotation;
-
+    private Vector3 hookStartPosition;
     void Start()
     {
         hookStartPosition = hook.transform.position;
@@ -35,7 +39,6 @@ public class FishingManager : MonoBehaviour
         }
 
         CheckForFishCollision();
-
         if (Input.GetMouseButtonDown(0) && !isHookMoving && canCastHook)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -54,6 +57,7 @@ public class FishingManager : MonoBehaviour
             MoveHook();
         }
     }
+
 
     private IEnumerator HookFishingProcess()
     {
