@@ -13,6 +13,8 @@ public class FishingManager : MonoBehaviour
     private LayerMask fishLayer;
     [SerializeField]
     private float hookSpeed = 5f;
+    [SerializeField]
+    private AudioSource ShootingAudio;
 
     private Vector3 targetPosition;
     private bool isHookMoving = false;
@@ -41,6 +43,10 @@ public class FishingManager : MonoBehaviour
         CheckForFishCollision();
         if (Input.GetMouseButtonDown(0) && !isHookMoving && canCastHook)
         {
+            if (ShootingAudio != null)
+            {
+                ShootingAudio.Play();
+            }
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
