@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
 
         if (remainingHooks <= 0)
         {
-            Invoke("GameOver", 5f);
+            Invoke("GameOver", 3f);
         }
     }
 
@@ -135,5 +135,6 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         isWinning = true;
+        Invoke("GameOver", 3f);
     }
 }
