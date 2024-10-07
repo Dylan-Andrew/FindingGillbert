@@ -2538,6 +2538,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverUI
       objectReference: {fileID: 0}
+    - target: {fileID: 521918982244032755, guid: 868575ea23a08254cac1a92cff7bdb46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652412102699182727, guid: 868575ea23a08254cac1a92cff7bdb46, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652412102699182727, guid: 868575ea23a08254cac1a92cff7bdb46, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652412102699182727, guid: 868575ea23a08254cac1a92cff7bdb46, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422041619905762817, guid: 868575ea23a08254cac1a92cff7bdb46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8112790692700704728, guid: 868575ea23a08254cac1a92cff7bdb46, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3067,6 +3087,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1441375777228441937, guid: d8357ebe21efd774cb18a1e15961af60, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274938087230627882, guid: d8357ebe21efd774cb18a1e15961af60, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274938087230627882, guid: d8357ebe21efd774cb18a1e15961af60, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274938087230627882, guid: d8357ebe21efd774cb18a1e15961af60, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356961250016212840, guid: d8357ebe21efd774cb18a1e15961af60, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356961250016212840, guid: d8357ebe21efd774cb18a1e15961af60, type: 3}
+      propertyPath: m_Color.b
+      value: 0.827451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356961250016212840, guid: d8357ebe21efd774cb18a1e15961af60, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6283727
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356961250016212840, guid: d8357ebe21efd774cb18a1e15961af60, type: 3}
+      propertyPath: m_Color.r
+      value: 0.019607825
+      objectReference: {fileID: 0}
     - target: {fileID: 7684414801433392049, guid: d8357ebe21efd774cb18a1e15961af60, type: 3}
       propertyPath: m_Pivot.x
       value: 0
