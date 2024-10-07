@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8383f1334bfcbcf4eb5cc27a0fea2801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishData: {fileID: 11400000, guid: 1bf4928d9db72d64f800d78bd7e45c09, type: 2}
+  fishData: {fileID: 11400000, guid: 276e06ed8e0f6de4eab94e1a3d3d7e30, type: 2}
 --- !u!114 &962886872069094380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e05e06dfb4b05940b24d56a2abe969a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaSize: {x: 5, y: 5}
+  areaMin: {x: -5, y: 0, z: -5}
+  areaMax: {x: 5, y: 0, z: 5}
   minSpeed: 1
   maxSpeed: 5
   rotationSpeed: 5

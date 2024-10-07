@@ -44,24 +44,39 @@ public class GameManager : MonoBehaviour
     {
         HookedUI.gameObject.SetActive(true);
 
-        string[] messages = new string[]
+        string message;
+
+        if (fishName == "Robert")
         {
-        $"You think I look like Gilbert? I am {fishName}, dumbass.",
-        $"Are you blind? It's {fishName}!",
-        $"Do I look like Gilbert to you? Get your eyes checked!",
-        $"Look closer! This is obviously {fishName}.",
-        $"Seriously? This is {fishName}, not whoever you thought!",
-        $"I'm not just a fish; I'm {fishName}! Learn the difference!"
-        };
+            message = "I'm not Gilbert, but his brother Robert!";
+        }
+        else if (fishName == "Gilbert")
+        {
+            message = "Noooo not meeee!!!";
+        }
+        else
+        {
+            string[] messages = new string[]
+            {
+            $"You think I look like Gilbert? I am {fishName}, dumbass.",
+            $"Are you blind? It's {fishName}!",
+            $"Do I look like Gilbert to you? Get your eyes checked!",
+            $"Look closer! This is obviously {fishName}.",
+            $"Seriously? This is {fishName}, not whoever you thought!",
+            $"I'm not just a fish; I'm {fishName}! Learn the difference!"
+            };
 
-        string randomMessage = messages[Random.Range(0, messages.Length)];
+            message = messages[Random.Range(0, messages.Length)];
+        }
 
-        fishCaughtText.text = randomMessage;
+        fishCaughtText.text = message;
 
         yield return new WaitForSeconds(displayDuration);
+
         HookedUI.gameObject.SetActive(false);
         fishCaughtText.text = "";
     }
+
 
 
     public void DecreaseHookCount()
@@ -71,7 +86,7 @@ public class GameManager : MonoBehaviour
 
         if (remainingHooks <= 0)
         {
-            GameOver();
+            Invoke("GameOver", 5f);
         }
     }
 
@@ -120,6 +135,5 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         isWinning = true;
-        GameOver();
     }
 }

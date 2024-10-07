@@ -136,10 +136,7 @@ public class FishingManager : MonoBehaviour
             {
                 gameManager.Win();
             }
-            else
-            {
-                gameManager.DisplayFishCaught(fishComponent.fishData.fishName);
-            }
+            gameManager.DisplayFishCaught(fishComponent.fishData.fishName);
         }
 
         Destroy(hookedFish, 3f);

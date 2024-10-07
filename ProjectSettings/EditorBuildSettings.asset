@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 4aaf0385f975c7945922d69c7dc8f3fb
   - enabled: 1
-    path: Assets/21st/Scenes/DylanTest.unity
-    guid: 40a1976f2194f2a46b928f453e61cceb
-  - enabled: 1
     path: Assets/Batman/AssetIntegrationTest.unity
     guid: 024fb9b1aef5caaceb0231528f8700b4
   m_configObjects: {}
