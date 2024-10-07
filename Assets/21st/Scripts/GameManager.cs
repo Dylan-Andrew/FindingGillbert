@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 
         if (fishName == "Robert")
         {
-            message = "I'm not Gilbert, but his brother Robert!";
+            message = "Come on!! I'm not Gilbert, but his brother Robert!";
         }
         else if (fishName == "Gilbert")
         {
@@ -81,8 +81,8 @@ public class GameManager : MonoBehaviour
             $"Are you blind? It's {fishName}!",
             $"Do I look like Gilbert to you? Get your eyes checked!",
             $"Look closer! This is obviously {fishName}.",
-            $"Seriously? This is {fishName}, not whoever you thought!",
-            $"I'm not just a fish; I'm {fishName}! Learn the difference!"
+            $"Seriously? This is {fishName}, not Gilbert!",
+            $"I'm not Gilbert; I'm {fishName}! Learn the difference!"
             };
 
             message = messages[Random.Range(0, messages.Length)];
@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        if(bgMusic != null) bgMusic.Stop();
+        if (bgMusic != null) bgMusic.Stop();
 
         string[] winMessages = new string[]
         {
