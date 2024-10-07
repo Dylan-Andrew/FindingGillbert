@@ -64,6 +64,10 @@ public class GameManager : MonoBehaviour
         if (fishName == "Robert")
         {
             message = "Come on!! I'm not Gilbert, but his brother Robert!";
+             if (notGilbertSound != null && sfxMusic != null)
+            {
+                sfxMusic.PlayOneShot(notGilbertSound);
+            }
         }
         else if (fishName == "Gilbert")
         {
