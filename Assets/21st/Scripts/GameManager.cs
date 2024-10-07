@@ -25,6 +25,21 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject LoseUI;
 
+    [SerializeField]
+    private AudioClip gameOverSound;
+
+    [SerializeField]
+    private AudioClip notGilbertSound;
+
+    [SerializeField]
+    private AudioClip gilbertSound;
+
+    [SerializeField]
+    private AudioSource sfxMusic;
+
+    [SerializeField]
+    private AudioSource bgMusic;
+
     private int remainingHooks;
     private bool isWinning = false;
 
@@ -53,6 +68,10 @@ public class GameManager : MonoBehaviour
         else if (fishName == "Gilbert")
         {
             message = "Noooo not meeee!!!";
+            if (gilbertSound != null && sfxMusic != null)
+            {
+                sfxMusic.PlayOneShot(gilbertSound);
+            }
         }
         else
         {
@@ -67,6 +86,12 @@ public class GameManager : MonoBehaviour
             };
 
             message = messages[Random.Range(0, messages.Length)];
+
+            if (notGilbertSound != null && sfxMusic != null)
+            {
+                sfxMusic.PlayOneShot(notGilbertSound);
+            }
+
         }
 
         fishCaughtText.text = message;
@@ -97,6 +122,8 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        if(bgMusic != null) bgMusic.Stop();
+
         string[] winMessages = new string[]
         {
             "I caught Gilbert! Guess we are eating fish tonight",
@@ -118,12 +145,21 @@ public class GameManager : MonoBehaviour
             HookUI.gameObject.SetActive(false);
             WinUI.gameObject.SetActive(true);
             winText.text = randomWinMessage;
+            if (gilbertSound != null && sfxMusic != null)
+            {
+                sfxMusic.PlayOneShot(gilbertSound);
+            }
         }
         else
         {
             HookUI.gameObject.SetActive(false);
             LoseUI.gameObject.SetActive(true);
             loseText.text = randomLoseMessage;
+
+            if (gameOverSound != null && sfxMusic != null)
+            {
+                sfxMusic.PlayOneShot(gameOverSound);
+            }
         }
     }
 
