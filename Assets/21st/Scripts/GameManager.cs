@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject HookedUI;
     [SerializeField]
+    private GameObject HookUI;
+    [SerializeField]
     private GameObject WinUI;
     [SerializeField]
     private GameObject LoseUI;
@@ -98,11 +100,13 @@ public class GameManager : MonoBehaviour
 
         if (isWinning)
         {
+            HookUI.gameObject.SetActive(false);
             WinUI.gameObject.SetActive(true);
             winText.text = randomWinMessage;
         }
         else
         {
+            HookUI.gameObject.SetActive(false);
             LoseUI.gameObject.SetActive(true);
             loseText.text = randomLoseMessage;
         }
