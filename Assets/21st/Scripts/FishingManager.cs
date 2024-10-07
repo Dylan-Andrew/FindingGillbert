@@ -132,10 +132,13 @@ public class FishingManager : MonoBehaviour
         Fish fishComponent = hookedFish.GetComponent<Fish>();
         if (fishComponent != null && fishComponent.fishData != null)
         {
-            gameManager.DisplayFishCaught(fishComponent.fishData.fishName);
             if (fishComponent.fishData.fishName == "Gilbert")
             {
                 gameManager.Win();
+            }
+            else
+            {
+                gameManager.DisplayFishCaught(fishComponent.fishData.fishName);
             }
         }
 
