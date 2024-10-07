@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene("DylanTest", LoadSceneMode.Single);
+        SceneManager.LoadScene("AssetIntegrationTest", LoadSceneMode.Single);
     }
 
     public void OpenHowToPlay()

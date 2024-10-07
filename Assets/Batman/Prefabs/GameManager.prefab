@@ -45,7 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishCaughtText: {fileID: 0}
-  gameOverText: {fileID: 0}
+  winText: {fileID: 0}
+  loseText: {fileID: 0}
   remainingHooksText: {fileID: 0}
   displayDuration: 3
-  maxHooks: 15
+  maxHooks: 10
+  HookedUI: {fileID: 0}
+  WinUI: {fileID: 0}
+  LoseUI: {fileID: 0}
